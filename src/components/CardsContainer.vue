@@ -3,7 +3,9 @@
     <v-container>
         <v-row justify="center">
             <v-col v-for="(movie, index) in movies" :key="index">
-                <Card   :movie="movie.title" :cardImg="movie.poster_path"/>
+                <Card   :movie="movie.title" :cardImg="movie.poster_path" :date="movie.release_date" :lang="movie.original_language"
+                    :rating="movie.vote_average"
+                />
             </v-col>
         </v-row>
         

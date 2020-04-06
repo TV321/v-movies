@@ -1,12 +1,19 @@
 <template>
-    <div>
-        <h1>Header</h1>
-    </div>
+    <v-app-bar color=#222 style="border-bottom: 1px solid #ff9800">
+        <v-btn icon>
+            <v-icon>mdi-heart</v-icon>
+        </v-btn>
+        <v-toolbar-title><span class="orange--text">MOVIES</span></v-toolbar-title>
+        <v-spacer></v-spacer>
+
+    </v-app-bar>
 </template>
 
 <style lang="sass" scoped>
-    div 
-        height: 100px
-        width: 100%
-        border: 1px solid orangered
+
+    // div.v-toolbar__title
+    //     color: #ff9800
+    header.v-toolbar.v-app-bar
+        box-shadow: none
+
 </style>    

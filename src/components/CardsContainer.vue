@@ -1,20 +1,51 @@
 <template>
-    <div>
-        <h3>Containers for movie cards</h3>
-        <Card v-for="(movie, index) in movies" :key="index" :movie="movie"/>
+    <div id="cardsContainer">
+    <v-container>
+        <v-row justify="center">
+            <v-col v-for="(movie, index) in movies" :key="index">
+                <Card   :movie="movie.title" :cardImg="movie.poster_path"/>
+            </v-col>
+        </v-row>
+        
+    </v-container>
     </div>
+
 </template>
 
 <script>
 import Card from './Card.vue'
+import axios from 'axios'
+
+const key = "dbc9fd3cb8c02c485593e9bf8ba731d7";
+
 export default {
     data() {
         return {
-            movies: ['apple', 'express', 'jungle', 'randomShizzz']
+            movies: []
         }
     },
     components: {
         Card
+    },
+    mounted(){
+        axios
+            .get(`https://api.themoviedb.org/3/movie/popular?api_key=${ key }&language=en-US&page=1`)
+            .then(resp => {
+                console.log(resp.data.results)
+                this.movies = resp.data.results
+            })
     }
 }
 </script>
+
+<style lang="sass" scoped>
+    div.container
+        max-width: 1600px
+    div.col
+        padding: 10px 5px
+        flex-grow: 0
+
+    #cardsContainer
+        background-color: #333
+  
+</style>

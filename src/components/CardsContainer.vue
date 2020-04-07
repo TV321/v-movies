@@ -8,8 +8,16 @@
                 />
             </v-col>
         </v-row>
-        
+        <v-row justify="center">
+            <v-col>
+                <v-btn @click="onFabClick" light fab color="#FFC107">
+                    <v-icon>mdi-plus</v-icon>
+                </v-btn>
+            </v-col>
+        </v-row>
+
     </v-container>
+ 
     </div>
 
 </template>
@@ -23,7 +31,8 @@ const key = "dbc9fd3cb8c02c485593e9bf8ba731d7";
 export default {
     data() {
         return {
-            movies: []
+            movies: [],
+            page: 2
         }
     },
     components: {
@@ -36,6 +45,17 @@ export default {
                 console.log(resp.data.results)
                 this.movies = resp.data.results
             })
+    },
+    methods: {
+        onFabClick: function() {
+            axios
+                .get(`https://api.themoviedb.org/3/movie/popular?api_key=${ key }&language=en-US&page=${ this.page }`)
+                .then(resp => {
+                    console.log(resp.data.results)
+                    this.movies = [...this.movies, ...resp.data.results]
+                    this.page++
+                })
+        }
     }
 }
 </script>

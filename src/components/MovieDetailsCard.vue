@@ -84,7 +84,8 @@ export default {
             movie: "",
             url: "",
             movieTitle: "",
-            movieDate: ""
+            movieDate: "",
+            ratedMovies: []
         }
     },
     created() {
@@ -97,6 +98,12 @@ export default {
                 this.url = resp.data.backdrop_path
                 console.log(id)
 
+            })
+        axios
+            .get(`https://api.themoviedb.org/3/guest_session/${ this.guestId }/rated/movies?api_key=${ key }&language=en-US&sort_by=created_at.asc`)
+            .then(resp => {
+                console.log(resp.data.results)
+                this.ratedMovies = resp.data.results
             })
     },
     methods: {
@@ -128,6 +135,14 @@ export default {
         movie: function() {
             this.movieTitle = this.movie.title + " (" + this.movie.release_date.slice(0, 4) + ")"
             this.movieDate = this.movie.release_date.split("-").reverse().join(".") + '.'
+        },
+        ratedMovies() {
+            const id = this.$route.params.movieId
+            this.ratedMovies.forEach(movie => {
+                if(movie.id == id) {
+                    this.rating = movie.rating
+                }
+            })
         }
     }
 }

@@ -11,23 +11,30 @@
             height="350px"
             :src="`https://image.tmdb.org/t/p/original${ url }`"
         >
-        
         </v-img>
-        <v-card-title>{{ movieTitle }}</v-card-title>
-        <v-card-subtitle class="pb-2">Release date: {{ movieDate }}</v-card-subtitle>
+        <v-img
+            v-else
+            class="white--text align-end"
+            height="350px"
+            src="@/assets/movieDetails.jpg"
+        >
+        </v-img>
+        
+        <v-card-title class="amber--text headline">{{ movieTitle }}</v-card-title>
+        <v-card-subtitle class="pb-3 subtitle-1">Release date: {{ movieDate }}</v-card-subtitle>
 
         <v-card-text class="text--primary">
-            <div class="white--text">Language: {{movie.original_language}}</div>
-            <div class="white--text">Rating: {{movie.vote_average}}</div>
-            <div class="white--text">Popularity: {{movie.popularity}}</div>
+            <div class="white--text body-1"><span class="orange--text">Language:</span> {{movie.original_language}}</div>
+            <div class="white--text body-1"><span class="orange--text">Rating:</span> {{movie.vote_average}}</div>
+            <div class="white--text body-1"><span class="orange--text">Popularity:</span> {{movie.popularity}}</div>
 
-            <div class="white--text" v-if="movie">Production companies: 
+            <div class="white--text body-1" v-if="movie"><span class="orange--text">Production companies: </span> 
                 <span v-for="(comp, index) in companies" :key="index">{{ comp }}<span 
                     v-if="index !== companies.length - 1">, </span>
                 </span>.
             </div>
 
-            <div class="white--text pt-5">{{ movie.overview }}</div>
+            <div class="white--text pt-6 body-1">{{ movie.overview }}</div>
 
         </v-card-text>
 
@@ -98,7 +105,7 @@ export default {
         background-color: #333
         border: 1px solid orangered
         padding: 30px
-        height: calc(100vh - 64px)
+        min-height: calc(100vh - 64px)
 
 
   

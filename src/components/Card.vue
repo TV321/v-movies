@@ -2,23 +2,30 @@
         <v-card
             :to="'/details/' + movieId"
             class="d-flex flex-column"
-            max-width="300"
+            width="300"
             height="550"
             link
             dark
             hover
         >
             <v-img
-            class="white--text align-start"
-            max-height="350px"
-            :src="imageUrl"
+                v-if="cardImg"
+                class="white--text align-start"
+                max-height="350px"
+                :src="imageUrl"
             >
-            
+            </v-img>
+            <v-img
+                v-else
+                class="white--text align-start"
+                max-height="350px"
+                src="@/assets/movie.jpg"
+            >
             </v-img>
 
-            <v-card-title ><div class="green-text">{{ fullTitle }}</div></v-card-title>
+            <v-card-title ><div >{{ fullTitle }}</div></v-card-title>
 
-            <v-card-subtitle class="pb-0 flex-grow-1">Language: {{ lang }} {{ movieId }}</v-card-subtitle>
+            <v-card-subtitle class="pb-0 flex-grow-1">Language: {{ lang }} </v-card-subtitle>
 
             <v-card-actions>
  

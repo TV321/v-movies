@@ -5,7 +5,10 @@
         class="mx-auto"
         max-width="700"
     >
-        <v-img
+
+        <v-card-title class="amber--text headline">{{ movieTitle }}</v-card-title>
+        <div id="cardImage">
+            <v-img
             v-if="url"
             class="white--text align-end"
             height="350px"
@@ -19,22 +22,37 @@
             src="@/assets/movieDetails.jpg"
         >
         </v-img>
+        </div>
         
-        <v-card-title class="amber--text headline">{{ movieTitle }}</v-card-title>
-        <v-card-subtitle class="pb-3 subtitle-1">Release date: {{ movieDate }}</v-card-subtitle>
+        
+        <v-card-actions class="pa-0">
+            <v-card-subtitle class="subtitle-1">Release date: {{ movieDate }}</v-card-subtitle>
+
+            <v-spacer></v-spacer>
+            <span class="grey--text text--lighten-2 body-2 mr-0">
+                ({{ rating }})
+            </span>
+
+            <v-rating color="amber" background-color="#666" hover  class="pa-2"
+                :half-increments="true" half-icon="mdi-star-half-full" 
+                dense length="10" v-model="rating" :readonly="rating > 0" @input="onRatingClick">
+            </v-rating>
+        </v-card-actions>
 
         <v-card-text class="text--primary">
             <div class="white--text body-1"><span class="orange--text">Language:</span> {{movie.original_language}}</div>
             <div class="white--text body-1"><span class="orange--text">Rating:</span> {{movie.vote_average}}</div>
             <div class="white--text body-1"><span class="orange--text">Popularity:</span> {{movie.popularity}}</div>
 
-            <div class="white--text body-1" v-if="movie"><span class="orange--text">Production companies: </span> 
+            <div class="white--text body-1 pb-6" v-if="movie"><span class="orange--text">Production companies: </span> 
                 <span v-for="(comp, index) in companies" :key="index">{{ comp }}<span 
                     v-if="index !== companies.length - 1">, </span>
                 </span>.
             </div>
 
-            <div class="white--text pt-6 body-1">{{ movie.overview }}</div>
+            <v-divider></v-divider>
+            <div class="white--text pt-6 pb-6 body-1">{{ movie.overview }}</div>
+            <v-divider></v-divider>
 
         </v-card-text>
 
@@ -58,9 +76,11 @@ const key = "dbc9fd3cb8c02c485593e9bf8ba731d7";
 
 
 export default {
-    
+    props: ['guestId'],
+
     data() {
         return {
+            rating: 0,
             movie: "",
             url: "",
             movieTitle: "",
@@ -78,6 +98,20 @@ export default {
                 console.log(id)
 
             })
+    },
+    methods: {
+        onRatingClick() {
+            const id = this.$route.params.movieId
+            console.log(this.guestId)
+            axios
+                .post(`https://api.themoviedb.org/3/movie/${ id }/rating?api_key=${ key }&guest_session_id=${ this.guestId }`, {
+                    value: this.rating
+                })
+                .then(resp => {
+                    console.log(resp)
+                })
+
+        }
     },
     computed: {
         backdrop: function() {
@@ -103,9 +137,12 @@ export default {
  
     #cardContainer
         background-color: #333
-        border: 1px solid orangered
+        // border: 1px solid orangered
         padding: 30px
         min-height: calc(100vh - 64px)
+    #cardImage
+        border-bottom: 1px solid orange
+        border-top: 1px solid orange
 
 
   

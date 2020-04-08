@@ -1,8 +1,9 @@
 <template>
     <div>
         <Header title="MOVIE DETAILS"/>
-        <MovieDetailsCard />
+        <MovieDetailsCard :guestId="guestId"/>
         <h3>{{ movieId }}</h3>
+        <h3>{{ testData }}</h3>
     </div>
 </template>
 
@@ -13,7 +14,7 @@ import Header from '@/components/Header.vue'
 
 export default {
   name: 'MovieDetails',
-  props: ['movieId'],
+  props: ['movieId', 'testData', 'guestId'],
   components: {
     MovieDetailsCard,
     Header

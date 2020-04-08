@@ -3,12 +3,19 @@
         <v-btn icon>
             <v-icon>mdi-heart</v-icon>
         </v-btn>
-        <v-toolbar-title><span class="orange--text">MOVIES</span></v-toolbar-title>
+        <v-toolbar-title><span class="orange--text">{{ title }}</span></v-toolbar-title>
         <v-spacer></v-spacer>
 
     </v-app-bar>
 </template>
 
+<script>
+export default {
+    props: {
+        title: String
+    }
+}
+</script>
 <style lang="sass" scoped>
 
     // div.v-toolbar__title

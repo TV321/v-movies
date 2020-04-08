@@ -4,7 +4,7 @@
         <v-row justify="center">
             <v-col v-for="(movie, index) in movies" :key="index">
                 <Card   :movie="movie.title" :cardImg="movie.poster_path" :date="movie.release_date" :lang="movie.original_language"
-                    :rating="movie.vote_average"
+                    :rating="movie.vote_average" :index="index" :movieId="movie.id"
                 />
             </v-col>
         </v-row>
@@ -32,7 +32,8 @@ export default {
     data() {
         return {
             movies: [],
-            page: 2
+            page: 2,
+            clickedIndex: null
         }
     },
     components: {

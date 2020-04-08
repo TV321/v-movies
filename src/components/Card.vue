@@ -1,5 +1,6 @@
 <template>
         <v-card
+            :to="'/details/' + movieId"
             class="d-flex flex-column"
             max-width="300"
             height="550"
@@ -17,28 +18,10 @@
 
             <v-card-title ><div class="green-text">{{ fullTitle }}</div></v-card-title>
 
-            <v-card-subtitle class="pb-0 flex-grow-1">Language: {{ lang }}</v-card-subtitle>
-<!-- 
-            <v-card-text class="flex-grow-1">
-                <div class="white--text">Whitehaven Beach</div>
-
-                <div class="white--text">Whitsunday Island, Whitsunday Islands</div>
-            </v-card-text> -->
+            <v-card-subtitle class="pb-0 flex-grow-1">Language: {{ lang }} {{ movieId }}</v-card-subtitle>
 
             <v-card-actions>
-                <!-- <v-btn
-                    color="orange"
-                    text
-                >
-                    Share
-                </v-btn>
-
-                <v-btn
-                    color="orange"
-                    text
-                >
-                    Explore
-                </v-btn> -->
+ 
                 <v-spacer></v-spacer>
                 <v-avatar color="#333" size="50" style="border: 3px solid #101010">
                     <span class="orange--text headline">{{rating}}</span>
@@ -55,7 +38,9 @@ export default {
         cardImg: String,
         date: String,
         lang: String,
-        rating: Number
+        rating: Number,
+        index: Number,
+        movieId: Number
     },
     data() {
         return {

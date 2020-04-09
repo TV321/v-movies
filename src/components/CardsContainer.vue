@@ -8,13 +8,17 @@
                 />
             </v-col>
         </v-row>
-        <v-row justify="center">
-            <v-col>
+        <v-row justify="end">
+            <v-col md="4" class="text-md-center">
                 <v-btn @click="onFabClick" light fab color="#FFC107">
                     <v-icon>mdi-plus</v-icon>
                 </v-btn>
             </v-col>
+            <v-col md="4" class="text-md-right">
+                <Modal />
+            </v-col>
         </v-row>
+
 
     </v-container>
  
@@ -24,6 +28,7 @@
 
 <script>
 import Card from './Card.vue'
+import Modal from './Modal.vue'
 import axios from 'axios'
 
 const key = "dbc9fd3cb8c02c485593e9bf8ba731d7";
@@ -37,7 +42,8 @@ export default {
         }
     },
     components: {
-        Card
+        Card,
+        Modal
     },
     mounted(){
         axios

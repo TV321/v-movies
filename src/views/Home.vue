@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Header title="MOVIES"/>
+    <Header title="MOVIES" :display="display" :onChange="onInputChange"/>
     <CardsContainer />
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
@@ -19,6 +19,16 @@ export default {
     HelloWorld,
     Header,
     CardsContainer
+  },
+  data() {
+    return {
+      display: "Popular"
+    }
+  },
+  methods: {
+    onInputChange(valueOfInput) {
+      this.display = valueOfInput
+    }
   }
 }
 </script>

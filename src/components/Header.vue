@@ -15,7 +15,7 @@
                     dense
                     v-if="title == 'MOVIES'"
                     dark
-                    :items="items"
+                    :items="items2"
                     label="SELECT"
                     outlined>
                 </v-select>
@@ -40,6 +40,20 @@ export default {
     data() {
         return {
             items: ['Top Rated', 'Popular', 'Latest'],
+            items2: [
+                {
+                    text: 'Top Rated', 
+                    value: 'top_rated'
+                }, 
+                {
+                    text: 'Popular', 
+                    value: 'popular'
+                }, 
+                {
+                    text: 'Now Playing', 
+                    value: 'now_playing'
+                }, 
+            ],
             inputValue: ''
         }
     },

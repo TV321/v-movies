@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Header title="MOVIES" :display="display" :onChange="onInputChange"/>
-    <CardsContainer />
+    <CardsContainer :display="display"/>
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      display: "Popular"
+      display: "popular"
     }
   },
   methods: {

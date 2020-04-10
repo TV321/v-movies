@@ -34,11 +34,14 @@ import axios from 'axios'
 const key = "dbc9fd3cb8c02c485593e9bf8ba731d7";
 
 export default {
+    props: {
+        display: String
+    },
     data() {
         return {
             movies: [],
             page: 2,
-            clickedIndex: null
+            clickedIndex: null,
         }
     },
     components: {
@@ -47,7 +50,7 @@ export default {
     },
     mounted(){
         axios
-            .get(`https://api.themoviedb.org/3/movie/popular?api_key=${ key }&language=en-US&page=1`)
+            .get(`https://api.themoviedb.org/3/movie/${ this.display }?api_key=${ key }&language=en-US&page=1`)
             .then(resp => {
                 console.log(resp.data.results)
                 this.movies = resp.data.results
@@ -56,14 +59,25 @@ export default {
     methods: {
         onFabClick: function() {
             axios
-                .get(`https://api.themoviedb.org/3/movie/popular?api_key=${ key }&language=en-US&page=${ this.page }`)
+                .get(`https://api.themoviedb.org/3/movie/${ this.display }?api_key=${ key }&language=en-US&page=${ this.page }`)
                 .then(resp => {
                     console.log(resp.data.results)
                     this.movies = [...this.movies, ...resp.data.results]
                     this.page++
                 })
         }
-    }
+    },
+    watch: {
+        display() {
+            console.log('Display changed into: ' + this.display)
+            axios
+                .get(`https://api.themoviedb.org/3/movie/${ this.display }?api_key=${ key }&language=en-US&page=1`)
+                .then(resp => {
+                    console.log(resp.data.results)
+                    this.movies = resp.data.results
+                })
+        }
+    },
 }
 </script>
 

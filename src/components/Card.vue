@@ -12,7 +12,7 @@
                 v-if="cardImg"
                 class="white--text align-start"
                 max-height="350px"
-                :src="imageUrl"
+                :src="fullImageUrl"
             >
             </v-img>
             <v-img
@@ -49,14 +49,12 @@ export default {
         index: Number,
         movieId: Number
     },
-    data() {
-        return {
-            imageUrl: `https://image.tmdb.org/t/p/w500${ this.cardImg }`
-        }
-    },
     computed: {
         fullTitle: function() {
             return this.movie + " " + "(" + this.date.slice(0, 4) + ")"
+        },
+        fullImageUrl() {
+            return 'https://image.tmdb.org/t/p/w500' + this.cardImg
         }
     }
 }

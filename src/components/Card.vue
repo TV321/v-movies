@@ -36,10 +36,16 @@
             </v-card-actions>
             
         </v-card>
+
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            
+        }
+    },
     props: {
         movie: String,
         cardImg: String,
@@ -47,7 +53,7 @@ export default {
         lang: String,
         rating: Number,
         index: Number,
-        movieId: Number
+        movieId: Number,
     },
     computed: {
         fullTitle: function() {
@@ -66,8 +72,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-    div.v-card
-        // border: 1px solid orangered
         
     // .v-responsive
     //     flex: unset

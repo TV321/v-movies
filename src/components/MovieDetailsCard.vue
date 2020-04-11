@@ -60,7 +60,7 @@
         <v-btn
             color="orange"
             text
-            to="/"
+            @click.prevent="goBack"
         >
             Back
         </v-btn>
@@ -118,6 +118,9 @@ export default {
                     console.log(resp)
                 })
 
+        },
+        goBack() {
+            this.$router.go(-1)
         }
     },
     computed: {

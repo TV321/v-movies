@@ -8,18 +8,18 @@
                 />
             </v-col>
         </v-row>
+
         <v-row justify="end">
             <v-col md="4" class="text-md-center">
                 <v-btn @click="onFabClick" light fab color="#FFC107">
                     <v-icon>mdi-plus</v-icon>
                 </v-btn>
             </v-col>
+            
             <v-col md="4" class="text-md-right">
                 <Modal />
             </v-col>
         </v-row>
-
-
     </v-container>
  
     </div>
@@ -49,12 +49,7 @@ export default {
         Modal
     },
     mounted(){
-        axios
-            .get(`https://api.themoviedb.org/3/movie/${ this.display }?api_key=${ key }&language=en-US&page=1`)
-            .then(resp => {
-                console.log(resp.data.results)
-                this.movies = resp.data.results
-            })
+        this.fetchData()
     },
     methods: {
         onFabClick: function() {
@@ -65,17 +60,20 @@ export default {
                     this.movies = [...this.movies, ...resp.data.results]
                     this.page++
                 })
-        }
-    },
-    watch: {
-        display() {
-            console.log('Display changed into: ' + this.display)
+        },
+        fetchData() {
             axios
                 .get(`https://api.themoviedb.org/3/movie/${ this.display }?api_key=${ key }&language=en-US&page=1`)
                 .then(resp => {
                     console.log(resp.data.results)
                     this.movies = resp.data.results
-                })
+                })            
+        }
+    },
+    watch: {
+        display() {
+            console.log('Display changed into: ' + this.display)
+            this.fetchData()
         }
     },
 }

@@ -133,8 +133,14 @@ export default {
     },
     watch: {
         movie: function() {
-            this.movieTitle = this.movie.title + " (" + this.movie.release_date.slice(0, 4) + ")"
-            this.movieDate = this.movie.release_date.split("-").reverse().join(".") + '.'
+            if(this.movie.release_date) {
+                this.movieTitle = this.movie.title + " (" + this.movie.release_date.slice(0, 4) + ")"
+                this.movieDate = this.movie.release_date.split("-").reverse().join(".") + '.'
+            } else {
+                this.movieTitle = this.movie.title
+                this.movieDate = "Unknown"
+            }
+            
         },
         ratedMovies() {
             const id = this.$route.params.movieId

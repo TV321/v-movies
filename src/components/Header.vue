@@ -45,12 +45,12 @@ export default {
             items: ['Top Rated', 'Popular', 'Latest'],
             items2: [
                 {
-                    text: 'Top Rated', 
-                    value: 'top_rated'
-                }, 
-                {
                     text: 'Popular', 
                     value: 'popular'
+                }, 
+                {
+                    text: 'Top Rated', 
+                    value: 'top_rated'
                 }, 
                 {
                     text: 'Now Playing', 

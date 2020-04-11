@@ -51,7 +51,12 @@ export default {
     },
     computed: {
         fullTitle: function() {
-            return this.movie + " " + "(" + this.date.slice(0, 4) + ")"
+            if(this.date) {
+                return this.movie + " " + "(" + this.date.slice(0, 4) + ")"
+            } else {
+                return this.movie
+            }
+            
         },
         fullImageUrl() {
             return 'https://image.tmdb.org/t/p/w500' + this.cardImg

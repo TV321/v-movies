@@ -1,16 +1,16 @@
 <template>
-<v-app >
+<v-app class="blue">
 <div id="app">
     
     <keep-alive include="Home">
-      <router-view :testData="testData" :guestId="guestSessionId"/>
+      <router-view :guestId="guestSessionId"/>
     </keep-alive>
     
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/details">Details</router-link>
-    </div>
+    </div> -->
     
   </div>
   </v-app>
@@ -23,7 +23,6 @@ const key = "dbc9fd3cb8c02c485593e9bf8ba731d7";
 export default {
   name: 'App',
   data: () => ({
-    testData: "this is the test data all the way from app.vue",
     guestSessionId: ""
   }),
   mounted() {

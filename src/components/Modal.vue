@@ -3,7 +3,7 @@
     <v-dialog
       v-model="dialog"
       width="500"
-      dark
+      
     >
       <template v-slot:activator="{ on }">
         <v-btn light fab color="#FFC107" v-on="on">
@@ -21,11 +21,11 @@
 
         <v-card-text class="pt-2">
             <v-radio-group v-model="inputValue" column @change="onInput">
-            <v-radio label="Action" value="28"></v-radio>
-            <v-radio label="Crime" value="80"></v-radio>
-            <v-radio label="Comedy" value="35"></v-radio>
-            <v-radio label="Horror" value="27"></v-radio>
-            <v-radio label="Science Fiction" value="878"></v-radio>
+            <v-radio label="Action" value="28" color="orange"></v-radio>
+            <v-radio label="Crime" value="80" color="orange"></v-radio>
+            <v-radio label="Comedy" value="35" color="orange"></v-radio>
+            <v-radio label="Horror" value="27" color="orange"></v-radio>
+            <v-radio label="Science Fiction" value="878" color="orange"></v-radio>
           </v-radio-group>
         </v-card-text>
 
